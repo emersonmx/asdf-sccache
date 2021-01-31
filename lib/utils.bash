@@ -36,13 +36,19 @@ list_github_tags() {
     sed 's/^v//' # NOTE: You might want to adapt this sed to remove non-version strings from tags
 }
 
+get_github_tag_version() {
+  version=$1
+  git ls-remote --tags --refs "$GH_REPO" |
+    grep -o 'refs/tags/.*' | cut -d/ -f3- | grep -E "^v?version$"
+}
+
 list_all_versions() {
   list_github_tags
 }
 
 download_release() {
   local version filename url
-  version="$1"
+  version="$(get_github_tag_version $1)"
   filename="$2"
 
   url="$GH_REPO/releases/download/${version}/sccache-${version}-${platform}.tar.gz"
