@@ -76,7 +76,7 @@ install_version() {
     local tool_cmd
     tool_cmd="$(echo "sccache --help" | cut -d' ' -f1)"
     tool_path="$install_path/$tool_cmd"
-    chmod +x $tool_path
+    chmod +x "$tool_path"
 
     echo "sccache $version installation was successful!"
   ) || (
