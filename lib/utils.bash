@@ -37,9 +37,9 @@ list_github_tags() {
 }
 
 get_github_tag_version() {
-  version=$1
+  version="$1"
   git ls-remote --tags --refs "$GH_REPO" |
-    grep -o 'refs/tags/.*' | cut -d/ -f3- | grep -E "^v?version$"
+    grep -o 'refs/tags/.*' | cut -d/ -f3- | grep -E "^v?$version$"
 }
 
 list_all_versions() {
