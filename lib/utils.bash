@@ -68,7 +68,7 @@ install_version() {
 
   local release_file="$install_path/sccache-$version.tar.gz"
   (
-    mkdir -p "$install_path"
+    mkdir -p "$install_path/bin"
     download_release "$version" "$release_file"
     tar -xzf "$release_file" -C "$install_path" --strip-components=1 || fail "Could not extract $release_file"
     rm "$release_file"
