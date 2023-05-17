@@ -2,12 +2,21 @@
 
 set -euo pipefail
 
+case "$(uname -m)" in
+  "arm64" | "aarch64")
+    cpu_arch="aarch64"
+    ;;
+  *)
+    cpu_arch="x86_64"
+    ;;
+esac
+
 case "$(uname -s)" in
   "Linux")
-    platform='x86_64-unknown-linux-musl'
+    platform="${cpu_arch}-unknown-linux-musl"
     ;;
   "Darwin")
-    platform='x86_64-apple-darwin'
+    platform="${cpu_arch}-apple-darwin"
     ;;
 esac
 
